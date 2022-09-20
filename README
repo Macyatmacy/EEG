@@ -1,1 +1,9 @@
+This is a repo for a project on inner speech decoding with EEG data. We have compared too languages: English and Chinese.
 
+
+
+Data: we are uploading the preprocessed data to a google drive and will update the link here soon.
+
+Content:
+1. Language-specific neural decoding
+2. Classification with feature-based methods and end-to-end methods (neural networks).
