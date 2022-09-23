@@ -17,10 +17,10 @@ similar to the FEIS dataset but with different prompts:
 #################################################################################################
 
 We have compared datasets with different preprocessing:
-2~40 Hz without ICA applied
-2~40 Hz with ICA applied
-0.5~125 Hz without ICA applied
-0.5~125 Hz with ICA applied
+2 ~ 40 Hz without ICA applied
+2 ~ 40 Hz with ICA applied
+0.5 ~ 125 Hz without ICA applied
+0.5 ~ 125 Hz with ICA applied
 
 7 band groups are used to compare neural representations.
 delta (0.5 ~ 4 Hz)
