@@ -57,16 +57,21 @@ combined binary classification
 ####################################################################################
 
 Implementation of the codes:
+
 Data: 
+
 the 2~40 Hz data (withouth ICA): https://drive.google.com/drive/folders/1xwJEw1Da1R6QRPJjAojCsR_7ZgIVLVa4
 
 we are uploading the other preprocessed data to the google drive and will update soon.
 
 Code:
+
 The Matlab code is mainly for preprocessing and visulization, and the Python code for model training.
 
 There is a 'top_coding.m' file which controls the processing pipeline from raw data to data input for training, with most input and output in the cells to be data path.
+
 How to use:
+
 1. Add the whole code folder to Matlab path.
 2. Put the raw '.csv' files of each subject into a single folder. And put the folders with subject data into a folder. Change matlab path to that folder and strart from 'topfolder = pwd;'; or start with the data in the google drive and set:
 fil_folder_name = 'fil_2_40' and update EEG_paths;
