@@ -86,6 +86,9 @@ other reference: https://github.com/Macyatmacy/imagined_speech_cnns
 ####################################################################################
 
 Ref
+
 Zhang, K., Robinson, N., Lee, S. W., & Guan, C. (2021). Adaptive transfer learning for EEG motor imagery classification with deep Convolutional Neural Network. Neural Networks, 136, 1-10.
+
 Schirrmeister, R. T., Springenberg, J. T., Fiederer, L. D. J., Glasstetter, M., Eggensperger, K., Tangermann, M., ... & Ball, T. (2017). Deep learning with convolutional neural networks for EEG decoding and visualization. Human brain mapping, 38(11), 5391-5420.
+
 Cooney, C., Folli, R., & Coyle, D. (2019, October). Optimizing layers improves CNN generalization and transfer learning for imagined speech decoding from EEG. In 2019 IEEE international conference on systems, man and cybernetics (SMC) (pp. 1311-1316). IEEE.
