@@ -41,6 +41,7 @@ combined binary classification
 Implementation of the codes:
 Data: 
 the 2~40 Hz data (withouth ICA): https://drive.google.com/drive/folders/1xwJEw1Da1R6QRPJjAojCsR_7ZgIVLVa4
+
 we are uploading the other preprocessed data to the google drive and will update soon.
 
 Code:
