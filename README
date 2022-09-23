@@ -56,12 +56,20 @@ To run neural networks:
 dependent:
 independent:
 transfer learning:
+
 #################################################################################################
+
 Refenrence codes:
 transfer learning pipeline adapted from: https://github.com/zhangks98/eeg-adapt
 braindecode library(o.4.85 version): https://robintibor.github.io/braindecode/
 FBCSP adapted from: https://github.com/TNTLFreiburg/fbcsp
 other reference: https://github.com/Macyatmacy/imagined_speech_cnns
+
+#################################################################################################
+Ref
+Zhang, K., Robinson, N., Lee, S. W., & Guan, C. (2021). Adaptive transfer learning for EEG motor imagery classification with deep Convolutional Neural Network. Neural Networks, 136, 1-10.
+Schirrmeister, R. T., Springenberg, J. T., Fiederer, L. D. J., Glasstetter, M., Eggensperger, K., Tangermann, M., ... & Ball, T. (2017). Deep learning with convolutional neural networks for EEG decoding and visualization. Human brain mapping, 38(11), 5391-5420.
+
 
 
 
