@@ -47,3 +47,22 @@ For RCSP, it is implemented in matlab and the functions are in the RCSP folder.
 For FBCSP and any neural networks, data should be prepared with Matlab into '.gdf' format, and input into the Python code.
 
 When comparing neural networks, we add two extensions of the Deep4Net into the Braindecode module.
+
+To run FBCSP:
+dependent:
+independent:
+
+To run neural networks:
+dependent:
+independent:
+transfer learning:
+#################################################################################################
+Refenrence codes:
+transfer learning pipeline adapted from: https://github.com/zhangks98/eeg-adapt
+braindecode library(o.4.85 version): https://robintibor.github.io/braindecode/
+FBCSP adapted from: https://github.com/TNTLFreiburg/fbcsp
+other reference: https://github.com/Macyatmacy/imagined_speech_cnns
+
+
+
+
