@@ -14,8 +14,6 @@ paradigm:
 similar to the FEIS dataset but with different prompts:
 
 ![alt text](https://github.com/Macyatmacy/EEG/blob/main/Images/prompts.png)
-
-<img src="Images/prompts.png" width="216" height="424" alt="output"/><br/>
 #################################################################################################
 
 We have compared datasets with different preprocessing:
