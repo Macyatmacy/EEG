@@ -1,4 +1,6 @@
-This is a repo for a project on inner speech decoding with EEG data. In the project, we have compared too languages: English and Chinese. Different neural representations of two native language groups have been explored with paired t tests, topographies and 3D localasation with the software sLoreta.
+This is a repo for a project on inner speech decoding with EEG data. In the project, we have compiled a novel dataset to compared too languages: English and Chinese. Different neural representations of two native language groups have been explored with paired t tests, topographies and 3D localasation (with the software sLoreta).
+Furthermore, both conventional methods (feature-based) and neural networks (end-to-end) have been evaluated on the the dataset, involving within-subject training, subject-independent training and transfer learning.
+
 
 
 
