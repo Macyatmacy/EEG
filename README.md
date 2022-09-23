@@ -5,7 +5,7 @@ Content:
 1. Language-specific neural decoding
 2. Classification with feature-based methods and end-to-end methods (neural networks).
 
-#################################################################################################
+####################################################################################
 
 5 English native speakers and 7 Chinese native speakers were recruited in the project. We collected about one-hour EEG data for each participant. 
 One of the English speakers has participanted twice.
@@ -14,7 +14,7 @@ paradigm:
 similar to the FEIS dataset but with different prompts:
 
 ![alt text](https://github.com/Macyatmacy/EEG/blob/main/Images/prompts.png)
-#################################################################################################
+####################################################################################
 
 We have compared datasets with different preprocessing:
 2 ~ 40 Hz without ICA applied
@@ -36,7 +36,7 @@ binary classification
 multi-class classification
 combined binary classification
 
-#################################################################################################
+####################################################################################
 
 Implementation of the codes:
 Data: 
@@ -72,7 +72,7 @@ dependent:
 independent:
 transfer learning:
 
-#################################################################################################
+####################################################################################
 
 Refenrence codes:
 transfer learning pipeline adapted from: https://github.com/zhangks98/eeg-adapt
@@ -83,7 +83,7 @@ FBCSP adapted from: https://github.com/TNTLFreiburg/fbcsp
 
 other reference: https://github.com/Macyatmacy/imagined_speech_cnns
 
-#################################################################################################
+####################################################################################
 
 Ref
 Zhang, K., Robinson, N., Lee, S. W., & Guan, C. (2021). Adaptive transfer learning for EEG motor imagery classification with deep Convolutional Neural Network. Neural Networks, 136, 1-10.
