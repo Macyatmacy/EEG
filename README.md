@@ -96,7 +96,7 @@ transfer learning:
 Refenrence codes:
 transfer learning pipeline adapted from: https://github.com/zhangks98/eeg-adapt
 
-braindecode library(o.4.85 version): https://robintibor.github.io/braindecode/
+braindecode library(0.4.85 version): https://robintibor.github.io/braindecode/
 
 FBCSP adapted from: https://github.com/TNTLFreiburg/fbcsp
 
