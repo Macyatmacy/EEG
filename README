@@ -5,6 +5,8 @@ Content:
 1. Language-specific neural decoding
 2. Classification with feature-based methods and end-to-end methods (neural networks).
 
+#################################################################################################
+
 5 English native speakers and 7 Chinese native speakers were recruited in the project. We collected about 0ne-hour EEG data for each participant. 
 One of the English speakers has participanted twice.
 
@@ -22,6 +24,8 @@ beta (12~30 Hz)
 low gamma (30~50 Hz)
 median gamma (50~70 Hz)
 high gamma (70~125 Hz)
+
+#################################################################################################
 
 Implementation of the codes:
 Data: 
