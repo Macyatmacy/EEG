@@ -1,5 +1,9 @@
-This is a repo for a project on inner speech decoding with EEG data. We have compared too languages: English and Chinese.
+This is a repo for a project on inner speech decoding with EEG data. In the project, we have compared too languages: English and Chinese. Different neural representations of two native language groups have been explored with paired t tests, topographies and 3D localasation with the software sLoreta.
 
+
+
+5 English native speakers and 7 Chinese native speakers were recruited in the project. We collected about 0ne-hour EEG data for each participant. 
+One of the English speakers has participanted twice.
 
 
 Data: 
