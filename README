@@ -45,3 +45,5 @@ fil_folder_name = 'fil_2_40' and update EEG_paths;
 For RCSP, it is implemented in matlab and the functions are in the RCSP folder.
 
 For FBCSP and any neural networks, data should be prepared with Matlab into '.gdf' format, and input into the Python code.
+
+When comparing neural networks, we add two extensions of the Deep4Net into the Braindecode module.
