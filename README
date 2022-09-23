@@ -2,7 +2,9 @@ This is a repo for a project on inner speech decoding with EEG data. We have com
 
 
 
-Data: we are uploading the preprocessed data to a google drive and will update the link here soon.
+Data: 
+the 2~40 Hz data (withouth ICA): https://drive.google.com/drive/folders/1xwJEw1Da1R6QRPJjAojCsR_7ZgIVLVa4
+we are uploading the other preprocessed data to the google drive and will update soon.
 
 Content:
 1. Language-specific neural decoding
