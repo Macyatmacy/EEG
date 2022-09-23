@@ -1,17 +1,31 @@
 This is a repo for a project on inner speech decoding with EEG data. In the project, we have compiled a novel dataset to compared too languages: English and Chinese. Different neural representations of two native language groups have been explored with paired t tests, topographies and 3D localasation (with the software sLoreta).
 Furthermore, both conventional methods (feature-based) and neural networks (end-to-end) have been evaluated on the the dataset, involving within-subject training, subject-independent training and transfer learning.
 
-
-
+Content:
+1. Language-specific neural decoding
+2. Classification with feature-based methods and end-to-end methods (neural networks).
 
 5 English native speakers and 7 Chinese native speakers were recruited in the project. We collected about 0ne-hour EEG data for each participant. 
 One of the English speakers has participanted twice.
 
+We have compared datasets with different preprocessing:
+2~40 Hz without ICA applied
+2~40 Hz with ICA applied
+0.5~125 Hz without ICA applied
+0.5~125 Hz with ICA applied
 
+7 band groups are used to compare neural representations.
+delta (0.5~4 Hz)
+theta (4~8 Hz)
+alpha (8~12 Hz)
+beta (12~30 Hz)
+low gamma (30~50 Hz)
+median gamma (50~70 Hz)
+high gamma (70~125 Hz)
+
+Implementation of the codes:
 Data: 
 the 2~40 Hz data (withouth ICA): https://drive.google.com/drive/folders/1xwJEw1Da1R6QRPJjAojCsR_7ZgIVLVa4
 we are uploading the other preprocessed data to the google drive and will update soon.
 
-Content:
-1. Language-specific neural decoding
-2. Classification with feature-based methods and end-to-end methods (neural networks).
+
