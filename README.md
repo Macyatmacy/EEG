@@ -26,6 +26,8 @@ We have compared datasets with different preprocessing:
 
 0.5 ~ 125 Hz with ICA applied
 
+####################################################################################
+
 7 band groups are used to compare neural representations.
 
 delta (0.5 ~ 4 Hz)
@@ -42,8 +44,9 @@ median gamma (50 ~ 70 Hz)
 
 high gamma (70 ~ 125 Hz)
 
+####################################################################################
 
-three classification tasks:
+Three classification tasks:
 
 binary classification
 
