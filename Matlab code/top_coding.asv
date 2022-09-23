@@ -1,0 +1,360 @@
+clear all;
+clc;
+%% Switch Workspace
+topfolder = pwd;
+%% Back to topfolder
+cd(topfolder);
+%% 0.0 Parameters
+fil_folder_name = 'fil_05_125';
+channel_location_path = 'G:\EEG-prepocessing\emotiv.ced';
+ICA_folder_name = 'ica';
+epoch_folder_name = 'epoch';
+% 8 prompts
+str_chi = {'zuo','you','shang','xia','shi','fou','hao','huai'};
+str_eng = {'left','right','up','down','yes','no','good','bad'};
+% each pair of prompts
+str_chi1 = {'zuo','you'};
+str_eng1 = {'left','right'};
+str_chi2 = {'shang','xia'};
+str_eng2 = {'up','down'};
+str_chi3 = {'shi','fou'};
+str_eng3 = {'yes','no'};
+str_chi4 = {'hao','huai'};
+str_eng4 = {'good','bad'};
+%% 0.1 Get raw data path
+[raw_paths] = get_raw_path(topfolder);
+save([topfolder,'\','raw_paths.mat'],'raw_paths');
+%% 0.2 Read raw data
+read_raw_data(raw_paths);
+%% 0.3 Processing with EEGLab: import data, channels, event tags, re-reference, filter, generate .mat file
+lo_pass = 0.5;
+hi_pass=125;
+[EEG_paths] = eeglab_process_group(raw_paths,fil_folder_name,lo_pass,hi_pass,channel_location_path);
+save([topfolder,'\','EEG_paths.mat'],'EEG_paths');
+%% 1.2 get gdf (need to change output folder in the function)
+ica_true = false;
+get_gdf(EEG_paths,'EEG.set',lo_pass,hi_pass,ica_true);
+%save([topfolder,'\','epoched_paths.mat'],'epoched_paths');
+%% 0.3 Processing with EEGLab: import data, channels, event tags, re-reference, filter, generate gdf file
+eeglab_process_group_gdf(raw_paths,2,40,channel_location_path);
+%% 0.4 Compute 
+[ICA_paths] = ICA_decompose(raw_paths,EEG_paths,ICA_folder_name);
+save([topfolder,'\','ICA_paths.mat'],'ICA_paths');
+%% 1.0 Feature Hyparameters
+%topfolder = 'G:\EEG-prepocessing\subject_data';
+
+%% 1.1 Get data paths of subject preprocessed data
+[data_paths] = get_EEG_path(topfolder,fil_folder_name,false,"ica_removed"); % ica = true/false
+save([topfolder,'\','data_paths.mat'],'data_paths');
+%% Prepare data for loreta
+save_eng_loreta_name = 'Eng_loreta_speak_removed_ica';
+read_file = 'EEG_epoch_speak_eng.mat';
+type = "eng_spk";
+sub_range = 1:13;
+[loreata_eng_paths] = get_loreta(topfolder,data_paths,save_eng_loreta_name,read_file,type,sub_range); 
+save([topfolder,'\','loreata_eng_paths.mat'],'loreata_eng_paths');
+%% Prepare data for loreta
+save_eng_loreta_name = 'Eng_loreta_img_erp_removed_ica';
+read_file = 'EEG_epoch_imagine_eng.mat';
+type = "eng_img";
+sub_range = 1:13;
+[loreata_eng_paths] = get_loreta_erp(topfolder,data_paths,save_eng_loreta_name,read_file,type,sub_range); 
+save([topfolder,'\','loreata_eng_paths.mat'],'loreata_eng_paths');
+%% Prepare data for loreta
+save_eng_loreta_name = 'Chi_loreta_img_erp_removed_ica';
+read_file = 'EEG_epoch_imagine_chi.mat';
+type = "chi_img";
+sub_range = 1:13;
+[loreata_eng_paths] = get_loreta_erp(topfolder,data_paths,save_eng_loreta_name,read_file,type,sub_range); 
+save([topfolder,'\','loreata_chi_paths.mat'],'loreata_chi_paths');
+%% Prepare data for loreta
+save_eng_loreta_name = 'Chi_loreta_img_tone_3_removed_ica';
+read_file = 'EEG_epoch_imagine_chi.mat';
+type = "chi_img_tone_3";
+tone = 3;
+sub_range = 1:13;
+[loreata_eng_paths] = get_loreta_tone(topfolder,data_paths,save_eng_loreta_name,read_file,type,sub_range,tone); 
+save([topfolder,'\','loreata_chi_paths.mat'],'loreata_chi_paths');
+%% Prepare data for loreta
+save_eng_loreta_name = 'Chi_loreta_img_tone_4_removed_ica';
+read_file = 'EEG_epoch_imagine_chi.mat';
+type = "chi_img_tone_4";
+tone = 4;
+sub_range = 1:13;
+[loreata_eng_paths] = get_loreta_tone(topfolder,data_paths,save_eng_loreta_name,read_file,type,sub_range,tone); 
+save([topfolder,'\','loreata_chi_paths.mat'],'loreata_chi_paths');
+%% 
+save_eng_loreta_name = 'Chi_loreta_speak_removed_ica';
+read_file = 'EEG_epoch_speak_chi.mat';
+type = "chi_spk";
+sub_range = 1:13;
+[loreata_chi_paths] = get_loreta(topfolder,data_paths,save_eng_loreta_name,read_file,type,sub_range); 
+save([topfolder,'\','loreata_chi_paths.mat'],'loreata_chi_paths');
+%% 1.2 epoching data
+%time_lock: [-0.5,5],[0,5],[0.5,5]
+[epoched_paths] = get_epoched(data_paths, epoch_folder_name, str_chi1, str_eng1,[0 5]);
+save([topfolder,'\','epoched_paths.mat'],'epoched_paths');
+%% 1.2 epoching data
+%time_lock: [-0.5,5],[0,5],[0.5,5]
+[epoched_paths] = get_epoched_combined(data_paths, epoch_folder_name, str_chi, str_eng,[0 5]);
+save([topfolder,'\','epoched_paths.mat'],'epoched_paths');
+%% 1.2 get gdf
+%time_lock: [-0.5,5],[0,5],[0.5,5]
+ica_true = false;
+get_gdf(EEG_paths,'EEG.set',0.5,4,ica_true);
+%save([topfolder,'\','epoched_paths.mat'],'epoched_paths');
+%% Get smaller epochs
+save_folder_name = "epoched_small";
+[small_epoched_paths] = get_small_epoch(data_paths, epoched_paths, save_folder_name);
+save([topfolder,'\','small_epoched_paths.mat'],'small_epoched_paths');
+%% 1.3 calculating correlation between subjects
+save_folder_name = "subj_corr";
+[subj_corr_paths] = get_subject_corr(data_paths,epoched_paths,save_folder_name);
+%% 2.0 normalize data for tf model
+norm_type = "Robust";
+save_folder_name = "epoch_norm";
+if norm_type == "Robust"
+    [epochs_norm_paths] = get_epoch_norm(data_paths,epoched_paths,save_folder_name,norm_type);
+end
+save([topfolder,'\','epochs_norm_paths.mat'],'epochs_norm_paths');
+%% 2.1 Formatting for eeg adapt models
+% if normalize data, input epochs_norm_paths, else input epoched_paths
+save_folder_name = [
+    "tf_data_audio_chi",
+    "tf_data_audio_eng",
+    "tf_data_img_chi",
+    "tf_data_img_eng",
+    "tf_data_spk_chi",
+    "tf_data_spk_eng"];
+[tf_data_paths] = get_tf_data(topfolder,epochs_norm_paths,save_folder_name);
+%%
+save_folder_name = 'tf_data_img';
+cd(topfolder);
+mkdir(save_folder_name);
+save_path = append(topfolder,'\',save_folder_name);
+path1 = tf_data_paths{3};
+path2 = tf_data_paths{4};
+files1 = dir(path1);
+files2 = dir(path2);
+for i=1:13
+    load(append(files1(i+2).folder,'\',files1(i+2).name));
+    data1 = EEG_bci.data;
+    label1 = ones(1,length(EEG_bci.label));
+    load(append(files2(i+2).folder,'\',files2(i+2).name));
+    data2 = EEG_bci.data;
+    label2 = 2.*ones(1,length(EEG_bci.label));
+    data = cat(3,data1,data2);
+    label = [label1,label2];
+    EEG_bci = struct();
+    EEG_bci.data = data;
+    EEG_bci.label = label;
+    if i <10
+        sub_id = append('0',string(i));
+    else
+        sub_id = string(i);
+    end
+    EEG_bci = shuffle_tensor_with_label(EEG_bci);
+    save_name = append('sess_comb_subj',sub_id,'_EEG');
+    save(append(save_path,'\',save_name),'EEG_bci');
+end
+%%
+save_folder_name = 'tf_data_spk';
+cd(topfolder);
+mkdir(save_folder_name);
+save_path = append(topfolder,'\',save_folder_name);
+path1 = tf_data_paths{5};
+path2 = tf_data_paths{6};
+files1 = dir(path1);
+files2 = dir(path2);
+for i=1:13
+    load(append(files1(i+2).folder,'\',files1(i+2).name));
+    data1 = EEG_bci.data;
+    label1 = ones(1,length(EEG_bci.label));
+    load(append(files2(i+2).folder,'\',files2(i+2).name));
+    data2 = EEG_bci.data;
+    label2 = 2.*ones(1,length(EEG_bci.label));
+    data = cat(3,data1,data2);
+    label = [label1,label2];
+    EEG_bci = struct();
+    EEG_bci.data = data;
+    EEG_bci.label = label;
+    if i <10
+        sub_id = append('0',string(i));
+    else
+        sub_id = string(i);
+    end
+    EEG_bci = shuffle_tensor_with_label(EEG_bci);
+    save_name = append('sess_comb_subj',sub_id,'_EEG');
+    save(append(save_path,'\',save_name),'EEG_bci');
+end
+%%
+save_folder_name = 'tf_data_audio';
+cd(topfolder);
+mkdir(save_folder_name);
+save_path = append(topfolder,'\',save_folder_name);
+path1 = tf_data_paths{1};
+path2 = tf_data_paths{2};
+files1 = dir(path1);
+files2 = dir(path2);
+for i=1:13
+    load(append(files1(i+2).folder,'\',files1(i+2).name));
+    data1 = EEG_bci.data;
+    label1 = ones(1,length(EEG_bci.label));
+    load(append(files2(i+2).folder,'\',files2(i+2).name));
+    data2 = EEG_bci.data;
+    label2 = 2.*ones(1,length(EEG_bci.label));
+    data = cat(3,data1,data2);
+    label = [label1,label2];
+    EEG_bci = struct();
+    EEG_bci.data = data;
+    EEG_bci.label = label;
+    if i <10
+        sub_id = append('0',string(i));
+    else
+        sub_id = string(i);
+    end
+    EEG_bci = shuffle_tensor_with_label(EEG_bci);
+    save_name = append('sess_comb_subj',sub_id,'_EEG');
+    save(append(save_path,'\',save_name),'EEG_bci');
+end
+%% RCSP img eng vs. chi
+files = dir('tf_data_img\');
+acc_list = [];
+f1_list = [];
+for i = 1:13
+    load(append(files(i+2).folder,'\',files(i+2).name));
+    [allFDAFtrs,gnd] = RCSP(EEG_bci);
+    len = length(gnd);
+    gnd = string(gnd);
+    len_train = round(len*0.8);
+    len_test = len-len_train;
+    train_x = allFDAFtrs(1:len_train,:);
+    train_y = gnd(1:len_train);
+    test_x = allFDAFtrs(len_train:end,:);
+    test_y = gnd(len_train:end);
+    [trainedClassifier, validationAccuracy1] = svm_qua_pca(train_x, train_y);
+    yfit1 = trainedClassifier.predictFcn(test_x);
+    yfit1 = string(yfit1);
+    idx = find(test_y==yfit1);
+    acc1 = length(idx)/length(test_y);
+    [C,order] = confusionmat(test_y,yfit1);
+    stats = statsOfMeasure(C, 0);
+    f1_1 = table2array(stats(end,["macroAVG"]));
+    acc_list = [acc_list;acc1];
+    f1_list = [f1_list;f1_1];
+end
+
+
+%% 3.0 split epochs
+save_train_folder_name = 'train_epoch';
+save_test_folder_name = 'test_epoch';
+[train_epochs_paths,test_epochs_paths] = get_epoch_split(data_paths,epoched_paths,save_train_folder_name,save_test_folder_name,0.8);
+save([topfolder,'\','train_epochs_paths.mat'],'train_epochs_paths');
+save([topfolder,'\','test_epochs_paths.mat'],'test_epochs_paths');
+%% 3.1 window data, if window_size = 1, no windowing
+win_sample_length = 5*256;
+[windowed_labelled_train_paths] = get_windowed_labelled(data_paths,train_epochs_paths,'windowed_labelled_train',0.1,0.5,win_sample_length);
+[windowed_labelled_test_paths] = get_windowed_labelled(data_paths,test_epochs_paths,'windowed_labelled_test',0.1,0.5,win_sample_length);
+save([topfolder,'\','windowed_labelled_train_paths.mat'],'windowed_labelled_train_paths');
+save([topfolder,'\','windowed_labelled_test_paths.mat'],'windowed_labelled_test_paths');
+%% 3.2 create feature type
+feature_type = containers.Map;
+feature_type('raw') = true;
+feature_type('fft') = true;
+feature_type('envelop') = true;
+%feature_type('MFCC') = true;
+feature_type('linear') = true;
+feature_type('complex') = true;
+feature_type('cwt') = true;
+feature_type('CSP') = true;
+feature_type('stat') = true;
+%% 3.3 create feature tensor 
+feature_tensor_folder_name = 'feature_tensor';
+if feature_type('envelop')
+    [feature_tensor_elp_train_paths] = get_feature_tensor(data_paths,windowed_labelled_train_paths,feature_tensor_folder_name,'train_envelop',256);
+    [feature_tensor_elp_test_paths] = get_feature_tensor(data_paths,windowed_labelled_test_paths,feature_tensor_folder_name,'test_envelop',256);
+end
+save([topfolder,'\','feature_tensor_elp_train_paths.mat'],'feature_tensor_elp_train_paths');
+save([topfolder,'\','feature_tensor_elp_test_paths.mat'],'feature_tensor_elp_test_paths');
+%% 3.4 
+if feature_type('fft')
+    [feature_tensor_fft_test_paths] = get_feature_tensor(data_paths,windowed_labelled_test_paths,feature_tensor_folder_name,'test_fft',256);
+    [feature_tensor_fft_train_paths] = get_feature_tensor(data_paths,windowed_labelled_train_paths,feature_tensor_folder_name,'train_fft',256);
+end
+save([topfolder,'\','feature_tensor_fft_train_paths.mat'],'feature_tensor_fft_train_paths');
+save([topfolder,'\','feature_tensor_fft_test_paths.mat'],'feature_tensor_fft_test_paths');
+%%
+if feature_type('stat')
+    [feature_tensor_stat_test_paths] = get_feature_tensor(data_paths,windowed_labelled_test_paths,feature_tensor_folder_name,'test_stat',256);
+    [feature_tensor_stat_train_paths] = get_feature_tensor(data_paths,windowed_labelled_train_paths,feature_tensor_folder_name,'train_stat',256);
+end
+save([topfolder,'\','feature_tensor_stat_train_paths.mat'],'feature_tensor_stat_train_paths');
+save([topfolder,'\','feature_tensor_stat_test_paths.mat'],'feature_tensor_stat_test_paths');
+%% create feature table by qEEG
+ch_labels = {'AF3','F7','F3','FC5','T7','P7','O1','O2','P8','T8','FC6','F4','F8','AF4'};
+[fea_qEEG_paths] = get_feature_qEEG(data_paths,windowed_labelled_paths,fea_qEEG_folder_name);
+save([topfolder,'\','fea_qEEG_paths.mat'],'fea_qEEG_paths');
+%% Ablation experiments: select feature type
+select_type = containers.Map;
+select_type('raw') = true;
+select_type('fft') = true;
+select_type('envelop') = true;
+feature_type('MFCC') = true;
+select_type('linear') = true;
+select_type('complex') = true;
+select_type('cwt') = true;
+
+test_subjects = [4,7];
+%% Ablation experiments: select window size
+test_window = 0.1:0.1:1;
+test_subjects = [4,7];
+%svm
+%KNN or RF
+%% Ablation experiments: ICA and filtering band
+
+%% 4.0 combine feature tensor
+to_combine_feature_train_path = [windowed_labelled_train_paths,feature_tensor_fft_train_paths,feature_tensor_elp_train_paths,feature_tensor_stat_train_paths];
+to_combine_feature_test_path = [windowed_labelled_test_paths,feature_tensor_fft_test_paths,feature_tensor_elp_test_paths,feature_tensor_stat_test_paths];
+%to_combine_feature_train_path = [feature_tensor_fft_train_paths,feature_tensor_elp_train_paths];
+%to_combine_feature_test_path = [feature_tensor_fft_test_paths,feature_tensor_elp_test_paths];
+combine_feature_tensor_train_folder_name = 'combine_feature_tensor_train';
+combine_feature_tensor_test_folder_name = 'combine_feature_tensor_test';
+[combine_feature_tensor_train_paths] = get_feature_tensor_comb(data_paths,to_combine_feature_train_path,combine_feature_tensor_train_folder_name);
+[combine_feature_tensor_test_paths] = get_feature_tensor_comb(data_paths,to_combine_feature_test_path,combine_feature_tensor_test_folder_name);
+save([topfolder,'\','combine_feature_tensor_train_paths.mat'],'combine_feature_tensor_train_paths');
+save([topfolder,'\','combine_feature_tensor_test_paths.mat'],'combine_feature_tensor_test_paths');
+%% 4.1 flatten feature
+feature_flattened_train_folder_name = 'feature_flattened_train';
+feature_flattened_test_folder_name = 'feature_flattened_test';
+[feature_flattened_train_paths] = get_feature_flattened(data_paths,combine_feature_tensor_train_paths,feature_flattened_train_folder_name);
+[feature_flattened_test_paths] = get_feature_flattened(data_paths,combine_feature_tensor_test_paths,feature_flattened_test_folder_name);
+save([topfolder,'\','feature_flattened_train_paths.mat'],'feature_flattened_train_paths');
+save([topfolder,'\','feature_flattened_test_paths.mat'],'feature_flattened_test_paths');
+%% 4.2 Normalize data
+feature_norm_train_folder_name = 'feature_norm_train';
+feature_norm_test_folder_name = 'feature_norm_test';
+[feature_norm_train_paths] = get_feature_norm(data_paths,feature_flattened_train_paths,feature_norm_train_folder_name);
+[feature_norm_test_paths] = get_feature_norm(data_paths,feature_flattened_test_paths,feature_norm_test_folder_name);
+save([topfolder,'\','feature_norm_train_paths.mat'],'feature_norm_train_paths');
+save([topfolder,'\','feature_norm_test_paths.mat'],'feature_norm_test_paths');
+%% 5.0 Train svm
+save_folder_name = "classifier_output";
+label_order = {'left_imagine','right_imagine','up_imagine','down_imagine','yes_imagine','no_imagine','good_imagine','bad_imagine'};
+tic
+[classifier_output_paths] = train_classifier(data_paths,feature_norm_train_paths,feature_norm_test_paths,save_folder_name,true,label_order);
+toc
+%% 5.1
+combined_svm_output_folder = "comb_svm_output";
+[combined_svm_output_paths] = combined_output(topfolder,svm_output_paths,combined_svm_output_folder);
+%% 6.0 Train KNN
+tic
+[knn_output_paths] = train_KNN(data_paths,feature_norm_train_paths,feature_norm_test_paths,svm_output_folder_name,true);
+toc
+%% Formatting for CNN rethinking models
+external_base_path = 'E:\document\MATLAB\Rethinking-Methods-Inner-Speech-adapt\Preprocessing';
+format_4_new_deep_4_net(feature_norm_paths,external_base_path);
+
+
+%% Generate features and format for EEG_learn
+
+
