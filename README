@@ -10,6 +10,14 @@ Content:
 5 English native speakers and 7 Chinese native speakers were recruited in the project. We collected about one-hour EEG data for each participant. 
 One of the English speakers has participanted twice.
 
+paradigm:
+similar to the FEIS dataset but with different prompts:
+
+
+
+
+#################################################################################################
+
 We have compared datasets with different preprocessing:
 2~40 Hz without ICA applied
 2~40 Hz with ICA applied
