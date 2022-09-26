@@ -28,7 +28,7 @@ similar to the FEIS dataset but with different prompts:
 
 ####################################################################################
 
-## 7 band groups are used to compare neural representations.
+## 7 band groups are used to compare neural representations
 
 ### delta (0.5 ~ 4 Hz)
 
@@ -46,7 +46,7 @@ similar to the FEIS dataset but with different prompts:
 
 ####################################################################################
 
-## Three classification tasks:
+## Three classification tasks have been implemented in content 2:
 
 ### binary classification
 
@@ -68,7 +68,7 @@ we are uploading the other preprocessed data to the google drive and will update
 
 The Matlab code is mainly for preprocessing and visulization, and the Python code for model training.
 
-There is a 'top_coding.m' file which controls the processing pipeline from raw data to data input for training, with most input and output in the cells to be data path.
+There is a 'top_coding.m' file which controls the processing pipeline from raw data to the data input for training, with most input and output in the cells to be data paths.
 
 ### How to use:
 
