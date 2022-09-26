@@ -88,13 +88,34 @@ binary classification: RCSP_pair_run.mlx
 combined binary classification: RCSP_comb_run.mlx
 
 To run FBCSP:
+
 dependent:
+
+python dependent.py -out_path out_path -type model_type -seed seed -data_path data_path
+
+
 independent:
 
+python independent.py -out_path out_path -type model_type -fold fold_index -seed seed
+
+
+
 To run neural networks:
+
 dependent:
-independent:
+
+python dependent.py -out_path out_path -model_type model_type -data_path data_path -seed seed
+
+
+independent: 
+
+python independent.py -out_path out_path -data_path data_path -model_type model_type -fold fold_index
+
+
 transfer learning:
+
+python transfer.py -data_path data_path -model_type model_type -model_path model_path -out_path out_path -scheme scheme -fold fold_index -seed seed
+
 
 ####################################################################################
 
