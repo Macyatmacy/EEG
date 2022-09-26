@@ -100,6 +100,7 @@ python independent.py -out_path out_path -type model_type -fold fold_index -seed
 
 
 
+
 To run neural networks:
 
 dependent:
