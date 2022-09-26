@@ -46,13 +46,29 @@ high gamma (70 ~ 125 Hz)
 
 ####################################################################################
 
-## Three classification tasks have been implemented in content 2:
+## Three classification tasks and 6 models have been evaluated in content 2:
 
 binary classification: binary classification for each pair of prompts with the opposite meaning in each language.
 
 multi-class classification: 8-class classification for the 8 prompts in each language.
 
 combined binary classification: binary classification for "English vs. Chinese" prompts.
+
+models:
+
+feature-based:
+
+a regularized common spatial patterns (RCSP) method
+
+filter bank common spatial patterns (FBCSP) method
+
+neural networks:
+
+Shallow FBCSP
+
+Deep4Net
+
+two extensions of Deep4Net
 
 ####################################################################################
 
