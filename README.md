@@ -82,6 +82,7 @@ For RCSP, it is implemented in matlab and the functions are in the RCSP folder.
 For FBCSP and any neural networks, data should be prepared with Matlab into '.gdf' format, and input into the Python code.
 
 When comparing neural networks, we add two extensions of the Deep4Net into the Braindecode module.
+
 ###########################
 
 #### To run RCSP:
@@ -93,6 +94,7 @@ RCSP_pair_run.mlx
 ##### combined binary classification: 
 
 RCSP_comb_run.mlx
+
 ###########################
 
 #### To run FBCSP:
