@@ -113,6 +113,9 @@ python independent.py -out_path out_path -type model_type -fold fold_index -seed
 
 #### To run neural networks:
 
+Define the model to train with parameter "model_type".
+
+
 ##### dependent:
 
 python dependent.py -out_path out_path -model_type model_type -data_path data_path -seed seed
