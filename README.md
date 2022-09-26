@@ -155,6 +155,7 @@ python transfer.py -data_path data_path -model_type model_type -model_path model
 ####################################################################################
 
 Refenrence codes:
+
 transfer learning pipeline adapted from: https://github.com/zhangks98/eeg-adapt
 
 braindecode library(0.4.85 version): https://robintibor.github.io/braindecode/
