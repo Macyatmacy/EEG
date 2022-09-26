@@ -84,8 +84,14 @@ For FBCSP and any neural networks, data should be prepared with Matlab into '.gd
 When comparing neural networks, we add two extensions of the Deep4Net into the Braindecode module.
 
 To run RCSP:
-binary classification: RCSP_pair_run.mlx
-combined binary classification: RCSP_comb_run.mlx
+
+binary classification: 
+
+RCSP_pair_run.mlx
+
+combined binary classification: 
+
+RCSP_comb_run.mlx
 
 To run FBCSP:
 
