@@ -58,13 +58,13 @@ combined binary classification: binary classification for "English vs. Chinese" 
 
 #### models:
 
-feature-based:
+##### feature-based:
 
 a regularized common spatial patterns (RCSP) method
 
 filter bank common spatial patterns (FBCSP) method
 
-neural networks:
+##### neural networks:
 
 Shallow FBCSP
 
