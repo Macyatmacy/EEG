@@ -48,11 +48,11 @@ high gamma (70 ~ 125 Hz)
 
 ## Three classification tasks have been implemented in content 2:
 
-binary classification
+binary classification: binary classification for each pair of prompts with the opposite meaning in each language.
 
-multi-class classification
+multi-class classification: 8-class classification for the 8 prompts in each language.
 
-combined binary classification
+combined binary classification: binary classification for "English vs. Chinese" prompts.
 
 ####################################################################################
 
